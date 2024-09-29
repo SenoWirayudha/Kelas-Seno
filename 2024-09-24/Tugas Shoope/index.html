@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoope</title>
+    <style>
+      body {
+        background-color: rgb(245,245,245);
+      }
+      .box {
+        width: 1150px;
+        height: 650px;
+        background-color: white;
+        margin: auto;
+        margin-top: 40px;
+      }
+      .container {
+        width: 400px;
+        height: 500px;
+        background-color: rgb(245,245,245);
+        display: flex;
+        position: absolute;
+        left: 190px;
+        top: 50px;
+        justify-content: center;
+      }
+      .gambar1 {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: 505px;
+        left: 0px;
+        background-color: ;
+      }
+      .gambar2 {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: 505px;
+        left: 80px;
+        background-color: ;
+      }
+      .gambar3 {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: 505px;
+        left: 160px;
+        background-color: ;
+      }
+      .gambar4 {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: 505px;
+        left: 240px;
+        background-color: ;
+      }
+      .gambar5 {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: 505px;
+        left: 320px;
+        background-color: ;
+      }
+      .nama {
+        width: 650px;
+        height: 50px;
+        position: absolute;
+        top: 10px;
+        left: 420px;
+        background-color: ;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .nilai {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 65px;
+        left: 420px;
+        background-color: ;
+        color: #ED4D2B;
+      }
+      .hubung {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 67px;
+        left: 515px;
+        background-color: ;
+        text-align: center;
+      }
+      .jumlah {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 70px;
+        left: 530px;
+        background-color: ;
+        font-size: 13px;
+      }
+      .lapor {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 70px;
+        left: 1010px;
+        background-color: ;
+        font-size: 13px;
+        color: grey;
+      }
+      .hargadiskon {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 110px;
+        left: 420px;
+        background-color: ;
+        color: grey;
+        font-size: 10px;
+        text-decoration: line-through;
+      }
+      .harga {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 100px;
+        left: 485px;
+        background-color: ;
+        color: #ED4D2B;
+        font-size: 22px;
+        font-weight: bold;
+      }
+      .diskon {
+        width: 63px;
+        height: 15px;
+        position: absolute;
+        top: 105px;
+        left: 620px;
+        background-color: #ED4D2B;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        font-size: 13px;
+        border-radius: 5px;
+      }
+      .voucher {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 150px;
+        left: 420px;
+        background-color: ;
+        color: grey;
+      }
+      .voucher2 {
+        width: 70px;
+        height: 20px;
+        position: absolute;
+        top: 150px;
+        left: 530px;
+        background-color: rgba(255,165,0,.1);
+        text-align: center;
+        color: #ED4D2B;
+      }
+      .return {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 200px;
+        left: 420px;
+        background-color: ;
+        color: grey;
+      }
+      .free {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 200px;
+        left: 530px;
+        background-color: ;
+      }
+      .bebas {
+        width: 180px;
+        height: 20px;
+        position: absolute;
+        top: 200px;
+        left: 560px;
+        background-color: ;
+      }
+      .berlaku {
+        width: 180px;
+        height: 20px;
+        position: absolute;
+        top: 200px;
+        left: 720px;
+        background-color: ;
+        color: grey;
+      }
+      .hemat {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 250px;
+        left: 420px;
+        background-color: ;
+        color: grey;
+      }
+      .hemat2 {
+        width: 110px;
+        height: 20px;
+        position: absolute;
+        top: 250px;
+        left: 530px;
+        background-color: rgba(255,165,0,.1);
+        text-align: center;
+        color: #ED4D2B;
+      }
+      .pengiriman {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 300px;
+        left: 420px;
+        background-color: ;
+        color: grey;
+      }
+      .go {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 300px;
+        left: 530px;
+        background-color: ;
+      }
+      .go2 {
+        width: 180px;
+        height: 20px;
+        position: absolute;
+        top: 300px;
+        left: 560px;
+        background-color: ;
+      }
+      .truk {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 350px;
+        left: 530px;
+        background-color: ;
+      }
+      .pengiriman2 {
+        width: 180px;
+        height: 20px;
+        position: absolute;
+        top: 350px;
+        left: 560px;
+        background-color: ;
+        color: grey;
+      }
+      .kota {
+        width: 180px;
+        height: 20px;
+        position: absolute;
+        top: 350px;
+        left: 700px;
+        background-color: ;
+        font-weight: bold;
+      }
+      .ongkos {
+        width: 180px;
+        height: 20px;
+        position: absolute;
+        top: 400px;
+        left: 560px;
+        background-color: ;
+        color: grey;
+      }
+      .rp {
+        width: 180px;
+        height: 20px;
+        position: absolute;
+        top: 400px;
+        left: 690px;
+        background-color: ;
+      }
+    </style>
+</head>
+<body>
+  <div class="box">
+    <div class="container"> 
+    <video controls autoplay><source src="Video Product/Video.mp4" type="video/webm"/></video>
+    <div class="gambar1"><img src="https://down-id.img.susercontent.com/file/id-11134207-7r98v-luiozgooccjudd.webp" alt="" width="78px"/></div>
+    <div class="gambar2"><img src="https://down-id.img.susercontent.com/file/id-11134207-7r990-luiozgoodr4af2.webp" alt="" width="78px"/></div>
+    <div class="gambar3"><img src="https://down-id.img.susercontent.com/file/id-11134207-7r98t-luiozgoo9jey43.webp" alt="" width="78px"/></div>
+    <div class="gambar4"><img src="https://down-id.img.susercontent.com/file/id-11134207-7r98u-luiozgooaxze61.webp" alt="" width="78px"/></div>
+    <div class="gambar5"><img src="https://down-id.img.susercontent.com/file/id-11134207-7r98x-lulku69iwd5pfb@resize_w450_nl.webp" alt="" width="80px" height="78px"/></div>
+    <div class="nama">AMOLI [ Bisa Lipat 360° ] Baru Mini touchscreen derajat laptop 11,6 inci Intel N4020/13,3 inci N4000 RAM 8GB+256GB SSD IPS Layer Bouns...</div>
+    <div class="nilai">4,9 ★★★★★</div>
+    <div class="hubung">|</div>
+    <div class="jumlah">100 Penilaian</div>
+    <div class="lapor">Laporkan</div>
+    <div class="hargadiskon">Rp4.180.000</div>
+    <div class="harga">Rp3.420.000</div>
+    <div class="diskon">18% OFF</div>
+    <div class="voucher">Voucher Toko</div>
+    <div class="voucher2">99% OFF</div>
+    <div class="return">Return</div>
+    <div class="free"><img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/fc40ac00de8257314355.png" alt="" width="20px"/></div>
+    <div class="bebas">Bebas Pengembalian</div>
+    <div class="berlaku">Berlaku untuk Produk ini</div>
+    <div class="hemat">Hemat</div>
+    <div class="hemat2">Hadiah Gratis</div>
+    <div class="pengiriman">Pengiriman</div>
+    <div class="go"><img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/5222d4ab0d91a1eca795.png" alt="" width="25px"/></div>
+    <div class="go2">Gratis Ongkir</div>
+    <div class="truk"><img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/baa823ac1c58392c2031.svg" alt="" width="20px"/></div>
+    <div class="pengiriman2">Pengiriman Ke</div>
+    <div class="kota">KOTA SIDOARJO PUSAT</div>
+    <div class="ongkos">Ongkos Kirim</div>
+    <div class="rp">Rp0</div>
+    </div>
+  </div>
+</body>
+</html>
