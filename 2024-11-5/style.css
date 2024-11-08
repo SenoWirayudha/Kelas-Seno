@@ -1,0 +1,46 @@
+.container {
+    width: 900px;
+    margin: auto;
+}
+
+.header {
+    height: 200px;
+    display: flex;
+}
+.header img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.nav ul {
+    display: flex;
+}
+
+.nav ul li {
+    margin-left: 20px;
+    list-style: none;
+}
+
+.home {
+    background-color: aqua;
+}
+
+.kontak{
+    background-color: blue;
+}
+
+.jurusan {
+    background-color: brown;
+}
+
+.tentang {
+    background-color: violet;
+}
+
+.jadwal {
+    background-color: purple;
+}
+
+.sejarah {
+    background-color: chartreuse;
+}
