@@ -1,0 +1,7 @@
+1. saya akan membuat toko online yang terdiri dari 4 bagian yaitu header, banner, produk, dan footer. dimana isi header adalah menu, kolom pencarian, register, login. Isi banner adalah 2 kolom 1 banner statis, dan 1 banner dinamis. isi dari produk adalah gambar, harga, beserta nama produk. Footer berisi menu pembayaran, media sosial, dan kontak. buatkan halaman htmlnya saja
+2. buatkan css untuk banner dinamis menggunakan 3 gambar slide yang bergerak dari kiri ke kanan
+3. buatkan html untuk backend admin page yang digunakan untuk entry nama barang, gambar barang, harga barang, gambar banner, manage user yang dapat meng-ban user, mengedit menu yang berisi kebijakan privasi dan syarat ketentuan, mengedit metode pembayaran, mengedit akun media sosial di ikuti kami, dan mengedit kontak kami. dalam beberpa file yang sesuai fungsinya, halaman admin page sebagai halaman home dari admin
+dalam beberpa file yang sesuai fungsinya, halaman admin page sebagai halaman home dari admin
+4. Buatkan halaman tentang kami untuk pelanggan agar bisa melihat profil dari toko kami seperti visi dan misi toko kami dan anggota tim kami
+5. Buatkan halaman kontak yang memuat formulir kontak bagi pengguna agar bisa memberikan masukan, saran, ataupun keluhan, dan informasi kontak lain dari kontak kami seperti media sosial, email, nomor telepon, dan alamat kami
+6. Buatkan halaman Checkout yang memuat informasi pembelian, informasi pengiriman yang berisi nama lengkap, alamat lengkap, nomor telepom, dan metode pembayaran
