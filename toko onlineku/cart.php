@@ -71,16 +71,15 @@
         </div>
     </section>
 
-        <!-- Footer -->
-        <footer class="bg-dark text-white py-4 mt-5">
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     <h5>Menu</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Kebijakan Privasi</a></li>
-                        <li><a href="#" class="text-white">Syarat & Ketentuan</a></li>
-                        <li><a href="#" class="text-white">Pengembalian Produk</a></li>
+                        <li><a href="kebijakan.php" class="text-white">Kebijakan Privasi</a></li>
+                        <li><a href="syarat.php" class="text-white">Syarat & Ketentuan</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">

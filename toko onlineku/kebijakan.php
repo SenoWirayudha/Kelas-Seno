@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Toko Online</title>
+    <title>Kebijakan Privasi</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -27,17 +28,32 @@
         </div>
     </header>
 
-    <!-- Banner -->
-    <section class="container mt-4">
-        <h2 class="text-center">Selamat Datang di Toko Online Kami!</h2>
-        <p class="text-center">Temukan berbagai produk menarik di toko kami. Jelajahi koleksi kami sekarang!</p>
-        <div class="text-center">
-            <a href="index.php" class="btn btn-primary">Masuk ke Shop</a> <!-- Tombol menuju Shop -->
-        </div>
-    </section>
+<section class="container mt-4">
+    <header>
+        <h2 class="text-center mb-4">Kebijakan Privasi</h2>
+        <p>Kami menghargai privasi Anda dan berkomitmen untuk melindungi informasi pribadi Anda.</p>
+    </header>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
+        <h2>Informasi yang Kami Kumpulkan</h2>
+        <p>Kami mengumpulkan informasi yang Anda berikan kepada kami saat mendaftar, melakukan pembelian, atau berinteraksi dengan layanan kami.</p>
+
+        <h2>Penggunaan Informasi</h2>
+        <p>Informasi yang kami kumpulkan digunakan untuk:</p>
+        <ul>
+            <li>Memproses pesanan dan memberikan layanan pelanggan.</li>
+            <li>Mengirimkan informasi dan pembaruan tentang pesanan Anda.</li>
+            <li>Mengirimkan email berkala tentang produk dan layanan baru.</li>
+        </ul>
+
+        <h2>Keamanan Informasi</h2>
+        <p>Kami menerapkan berbagai langkah keamanan untuk menjaga keamanan informasi pribadi Anda.</p>
+
+        <h2>Perubahan Kebijakan Privasi</h2>
+        <p>Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Kami akan memberi tahu Anda tentang perubahan dengan memposting kebijakan baru di halaman ini.</p>
+</section>
+    
+        <!-- Footer -->
+        <footer class="bg-dark text-white py-4 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -68,7 +84,7 @@
         </div>
     </footer>
 
-    <!-- Link ke JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

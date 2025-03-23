@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengaturan - Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/admin.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -23,6 +22,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="manage_users.php">Kelola Pengguna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href= "manage_order.php">Kelola Pembelian</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="settings.php">Pengaturan</a>

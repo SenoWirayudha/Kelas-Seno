@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Toko Online</title>
+    <title>Syarat & Ketentuan</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 
     <!-- Header -->
@@ -27,17 +29,28 @@
         </div>
     </header>
 
-    <!-- Banner -->
     <section class="container mt-4">
-        <h2 class="text-center">Selamat Datang di Toko Online Kami!</h2>
-        <p class="text-center">Temukan berbagai produk menarik di toko kami. Jelajahi koleksi kami sekarang!</p>
-        <div class="text-center">
-            <a href="index.php" class="btn btn-primary">Masuk ke Shop</a> <!-- Tombol menuju Shop -->
-        </div>
+        
+        <header>
+            <h2 class="text-center mb-4">Syarat & Ketentuan</h2>
+            <p>Syarat dan ketentuan ini mengatur penggunaan layanan kami.</p>
+        </header>
+
+        <h2>Penerimaan Syarat & Ketentuan</h2>
+        <p>Dengan menggunakan layanan kami, Anda setuju untuk mematuhi syarat dan ketentuan ini.</p>
+
+        <h2>Pembayaran</h2>
+        <p>Semua pembayaran harus dilakukan sebelum pengiriman barang dilakukan.</p>
+
+        <h2>Pengembalian Barang</h2>
+        <p>Kami menerima pengembalian barang dalam waktu 30 hari setelah penerimaan barang.</p>
+
+        <h2>Perubahan Syarat & Ketentuan</h2>
+        <p>Kami dapat memperbarui syarat dan ketentuan ini dari waktu ke waktu. Perubahan akan berlaku setelah diposting di halaman ini.</p>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
+            <!-- Footer -->
+            <footer class="bg-dark text-white py-4 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -68,7 +81,7 @@
         </div>
     </footer>
 
-    <!-- Link ke JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
