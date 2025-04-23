@@ -1,0 +1,17 @@
+.col-1{
+    background: purple;
+    width: 100px;
+    height: 100px;
+    margin: 50px;
+    padding: 30px;
+    box-sizing: content-box;
+}
+
+.col-2{
+    background: pink;
+    width: 100px;
+    height: 100px;
+    margin: 50px;
+    padding: 20px;
+    box-sizing: border-box;
+}

@@ -1,0 +1,59 @@
+.row{
+    background-color: aqua;
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    /* flex-direction: row; */
+    /* flex-direction: column-reverse; */
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
+    /* flex-wrap: nowrap; */
+    /* flex-flow: column; */
+    /* justify-content: center; */
+    /* justify-content: flex-start; */
+    /* justify-content: flex-end; */
+    /* justify-content: space-around; */
+    justify-content: space-between;
+}
+
+.col{
+    width: 150px;
+    height: 150px;
+}
+
+.satu{
+    background-color: yellow;
+}
+
+.dua{
+    background-color: green;
+}
+
+.tiga{
+    background-color: red;
+}
+
+.empat{
+    background-color: yellow;
+}
+
+/*
+.col-1{
+    background: purple;
+    width: 100px;
+    height: 100px;
+    margin: 50px;
+    padding: 30px;
+    box-sizing: content-box;
+}
+
+.col-2{
+    background: pink;
+    width: 100px;
+    height: 100px;
+    margin: 50px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+*/
