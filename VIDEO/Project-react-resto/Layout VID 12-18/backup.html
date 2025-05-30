@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Axios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h4>Belajar CRUD dengan Axios</h4>
+            </div>
+            <div class="col-md-4 text-end">
+                <button onclick="getData('kategori')" class="btn btn-primary">Get Kategori</button>
+                <button onclick="getData('pelanggan')" class="btn btn-primary">Get Pelanggan</button>
+                <button onclick="show()" class="btn btn-info text-white">Show</button>
+                <button onclick="showPostForm()" class="btn btn-success">Post</button>
+                <button onclick="showDeleteForm()" class="btn btn-danger">Delete</button>
+                <button onclick="showUpdateForm()" class="btn btn-warning">Update</button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <select id="endpointSelect" class="form-select">
+                        <option value="">Pilih Data</option>
+                        <option value="kategori">Kategori</option>
+                        <option value="pelanggan">Pelanggan</option>
+                    </select>
+                    <input type="number" id="idInput" class="form-control" placeholder="Masukkan ID">
+                    <button onclick="cari()" class="btn btn-primary">Cari</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="updateForm" class="border p-3 mb-3" style="display: none;">
+                    <h5>Update Data Pelanggan</h5>
+                    <form onsubmit="submitUpdatePelanggan(event)">
+                        <input type="hidden" id="updateId">
+                        <div class="mb-3">
+                            <label for="updatePelanggan" class="form-label">Nama Pelanggan</label>
+                            <input type="text" class="form-control" id="updatePelanggan" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateAlamat" class="form-label">Alamat</label>
+                            <input type="text" class="form-control" id="updateAlamat" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateTelp" class="form-label">No. Telepon</label>
+                            <input type="text" class="form-control" id="updateTelp" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-secondary" onclick="hideUpdateForm()">Cancel</button>
+                    </form>
+                </div>
+                <div id="postForm" class="border p-3 mb-3" style="display: none;">
+                    <h5>Tambah Data Pelanggan</h5>
+                    <form onsubmit="submitPelanggan(event)">
+                        <div class="mb-3">
+                            <label for="pelanggan" class="form-label">Nama Pelanggan</label>
+                            <input type="text" class="form-control" id="pelanggan" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telp" class="form-label">No. Telepon</label>
+                            <input type="text" class="form-control" id="telp" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" onclick="hidePostForm()">Cancel</button>
+                    </form>
+                </div>
+                <div id="result" class="border p-3">
+                <!-- Table will be dynamically inserted here -->
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const baseUrl = "http://localhost:8000/api";
+        const token = "3bgsUUIsynVXWmT9GQwbKLakFT10QQJe2X3vNRYj";
+
+        function getData(endpoint) {
+            if (!endpoint) return;
+            
+            // Show loading state
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `;
+            
+            axios({
+                method: 'get',
+                url: `${baseUrl}/${endpoint}`,
+                headers: {
+                    'api_token': token
+                }
+            }).then(response => {
+                console.log('API Response:', response);
+                
+                // Reset result area
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div id="errorMessage" class="alert alert-danger d-none"></div>
+                <table class="table table-striped" id="dataTable" style="display: none;">
+                    <thead>
+                        <tr id="tableHeaders"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            `;
+                
+                document.getElementById('errorMessage').classList.add('d-none');
+                
+                // Check if data exists in the response
+                let data;
+                if (response.data && response.data.data) {
+                    data = response.data.data;
+                } else if (Array.isArray(response.data)) {
+                    data = response.data;
+                }
+                
+                if (data && (Array.isArray(data) && data.length > 0)) {
+                    displayDataInTable(data);
+                    
+                    // Update placeholder with available IDs
+                    try {
+                        const idInput = document.getElementById('idInput');
+                        if (idInput && Array.isArray(data)) {
+                            const ids = data.map(item => item.id).filter(id => id).join(', ');
+                            idInput.placeholder = ids ? `ID tersedia: ${ids}` : 'Masukkan ID';
+                        }
+                    } catch (err) {
+                        console.error('Error updating placeholder:', err);
+                    }
+                } else {
+                    showError('Tidak ada data yang ditemukan');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                showError('Error fetching data: ' + (error.response?.data?.message || error.message));
+            });
+        }
+
+        function displayDataInTable(data) {
+            if (!data || (Array.isArray(data) && data.length === 0)) {
+                showError('Tidak ada data yang ditemukan');
+                return;
+            }
+            
+            const table = document.getElementById('dataTable');
+            const headers = document.getElementById('tableHeaders');
+            const body = document.getElementById('tableBody');
+            const errorElement = document.getElementById('errorMessage');
+            
+            if (!table || !headers || !body) {
+                console.error('Elemen tabel tidak ditemukan');
+                return;
+            }
+            
+            // Hide error message if exists
+            if (errorElement) {
+                errorElement.classList.add('d-none');
+            }
+            
+            // Clear previous content
+            headers.innerHTML = '';
+            body.innerHTML = '';
+            
+            // Handle both array and object data
+            const dataArray = Array.isArray(data) ? data : [data];
+            
+            if (dataArray.length === 0) {
+                showError('Tidak ada data yang ditemukan');
+                return;
+            }
+            
+            // Create headers
+            const columns = Object.keys(dataArray[0]);
+            columns.forEach(column => {
+                const th = document.createElement('th');
+                th.textContent = column;
+                headers.appendChild(th);
+            });
+            
+            // Create rows
+            dataArray.forEach(item => {
+                const tr = document.createElement('tr');
+                columns.forEach(column => {
+                    const td = document.createElement('td');
+                    td.textContent = item[column] !== null && item[column] !== undefined ? item[column] : '';
+                    tr.appendChild(td);
+                });
+                body.appendChild(tr);
+            });
+            
+            // Show table and ensure it's visible
+            table.style.display = 'table';
+            table.style.visibility = 'visible';
+            table.classList.remove('d-none');
+
+        }
+
+        function showPostForm() {
+            document.getElementById('postForm').style.display = 'block';
+        }
+
+        function showUpdateForm() {
+            const id = document.getElementById('idInput').value;
+            const endpoint = document.getElementById('endpointSelect').value;
+            
+            if (!endpoint) {
+                showError('Silakan pilih jenis data terlebih dahulu');
+                return;
+            }
+            
+            if (!id) {
+                showError('Silakan masukkan ID yang akan diupdate');
+                return;
+            }
+
+            // Fetch current data
+            axios({
+                method: 'get',
+                url: `${baseUrl}/${endpoint}/${id}`,
+                headers: {
+                    'api_token': token
+                }
+            }).then(response => {
+                const data = response.data;
+                document.getElementById('updateId').value = id;
+                document.getElementById('updatePelanggan').value = data.pelanggan;
+                document.getElementById('updateAlamat').value = data.alamat;
+                document.getElementById('updateTelp').value = data.telp;
+                document.getElementById('updateForm').style.display = 'block';
+            }).catch(error => {
+                console.error('Error:', error);
+                showError('Error fetching data: ' + (error.response?.data?.message || error.message));
+            });
+        }
+
+        function hideUpdateForm() {
+            document.getElementById('updateForm').style.display = 'none';
+        }
+
+        function submitUpdatePelanggan(event) {
+            event.preventDefault();
+            
+            const id = document.getElementById('updateId').value;
+            const pelanggan = document.getElementById('updatePelanggan').value;
+            const alamat = document.getElementById('updateAlamat').value;
+            const telp = document.getElementById('updateTelp').value;
+
+            axios({
+                method: 'put',
+                url: `${baseUrl}/pelanggan/${id}`,
+                headers: {
+                    'api_token': token,
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    pelanggan: pelanggan,
+                    alamat: alamat,
+                    telp: telp
+                }
+            }).then(response => {
+                console.log('Update Response:', response);
+                hideUpdateForm();
+                showSuccess('Data pelanggan berhasil diupdate');
+                getData('pelanggan'); // Refresh the customer data
+            }).catch(error => {
+                console.error('Error:', error);
+                showError('Error updating customer: ' + (error.response?.data?.message || error.message));
+            });
+        }
+
+        function showDeleteForm() {
+            const id = document.getElementById('idInput').value;
+            const endpoint = document.getElementById('endpointSelect').value;
+            
+            if (!endpoint) {
+                showError('Silakan pilih jenis data terlebih dahulu');
+                return;
+            }
+            
+            if (!id) {
+                showError('Silakan masukkan ID yang akan dihapus');
+                return;
+            }
+            
+            if (confirm(`Apakah Anda yakin ingin menghapus ${endpoint} dengan ID ${id}?`)) {
+                deletePelanggan(endpoint, id);
+            }
+        }
+
+        function deletePelanggan(endpoint, id) {
+            axios({
+                method: 'delete',
+                url: `${baseUrl}/${endpoint}/${id}`,
+                headers: {
+                    'api_token': token
+                }
+            }).then(response => {
+                console.log('Delete Response:', response);
+                showSuccess(`Data ${endpoint} berhasil dihapus`);
+                getData(endpoint); // Refresh the data table
+            }).catch(error => {
+                console.error('Error:', error);
+                showError('Error deleting data: ' + (error.response?.data?.message || error.message));
+            });
+        }
+
+        function hidePostForm() {
+            document.getElementById('postForm').style.display = 'none';
+        }
+
+        function submitPelanggan(event) {
+            event.preventDefault();
+            
+            const pelanggan = document.getElementById('pelanggan').value;
+            const alamat = document.getElementById('alamat').value;
+            const telp = document.getElementById('telp').value;
+
+            axios({
+                method: 'post',
+                url: `${baseUrl}/pelanggan`,
+                headers: {
+                    'api_token': token,
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    pelanggan: pelanggan,
+                    alamat: alamat,
+                    telp: telp
+                }
+            }).then(response => {
+                console.log('Post Response:', response);
+                hidePostForm();
+                showSuccess('Data pelanggan berhasil ditambahkan');
+                getData('pelanggan'); // Refresh the customer data
+            }).catch(error => {
+                console.error('Error:', error);
+                showError('Error adding customer: ' + (error.response?.data?.message || error.message));
+            });
+        }
+
+        function showSuccess(message) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="alert alert-success">${message}</div>
+                ${resultDiv.innerHTML}
+            `;
+        }
+
+        function getDataById(endpoint, id) {
+            if (!endpoint || !id) return;
+            
+            // Show loading state
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `;
+            
+            axios({
+                method: 'get',
+                url: `${baseUrl}/${endpoint}/${id}`,
+                headers: {
+                    'api_token': token
+                }
+            }).then(response => {
+                console.log('API Response by ID:', response);
+                
+                // Reset result area
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div id="errorMessage" class="alert alert-danger d-none"></div>
+                <table class="table table-striped" id="dataTable" style="display: none;">
+                    <thead>
+                        <tr id="tableHeaders"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            `;
+                
+                document.getElementById('errorMessage').classList.add('d-none');
+                
+                // Check if data exists in the response
+                let data;
+                if (response.data && response.data.data) {
+                    data = response.data.data;
+                } else {
+                    data = response.data;
+                }
+                
+                if (data && typeof data === 'object') {
+                    displayDataInTable(data);
+                } else {
+                    showError('Data tidak ditemukan');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                showError('Error mengambil data: ' + (error.response?.data?.message || error.message));
+            });
+        }
+
+        function show() {
+            const endpoint = document.getElementById('endpointSelect').value;
+            if (!endpoint) {
+                alert('Silakan pilih jenis data terlebih dahulu');
+                return;
+            }
+
+            const id = document.getElementById('idInput').value;
+            if (!id) {
+                alert('Silakan masukkan ID terlebih dahulu');
+                return;
+            }
+
+            getDataById(endpoint, id);
+        }
+
+        function cari() {
+            const endpoint = document.getElementById('endpointSelect').value;
+            if (!endpoint) {
+                alert('Silakan pilih jenis data terlebih dahulu');
+                return;
+            }
+
+            const id = document.getElementById('idInput').value;
+            if (!id) {
+                getData(endpoint); // Get all data if no ID is specified
+                return;
+            }
+
+            getDataById(endpoint, id);
+        }
+        
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            const dataTable = document.getElementById('dataTable');
+            
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.classList.remove('d-none');
+            }
+            
+            if (dataTable) {
+                dataTable.style.display = 'none';
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

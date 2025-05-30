@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Siswa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h4>Belajar CRUD dengan Axios</h4>
+            </div>
+            <div class="col-md-4 text-end">
+                <button onclick="getData('kategori')" class="btn btn-primary">Get Kategori</button>
+                <button onclick="getData('pelanggan')" class="btn btn-primary">Get Pelanggan</button>
+                <button onclick="show()" class="btn btn-info text-white">Show</button>
+                <button onclick="showPostForm()" class="btn btn-success">Post</button>
+                <button onclick="showDeleteForm()" class="btn btn-danger">Delete</button>
+                <button onclick="showUpdateForm()" class="btn btn-warning">Update</button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <select id="endpointSelect" class="form-select">
+                        <option value="">Pilih Data</option>
+                        <option value="kategori">Kategori</option>
+                        <option value="pelanggan">Pelanggan</option>
+                    </select>
+                    <input type="number" id="idInput" class="form-control" placeholder="Masukkan ID">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="updateForm" class="border p-3 mb-3" style="display: none;">
+                    <h5>Update Data Pelanggan</h5>
+                    <form onsubmit="submitUpdatePelanggan(event)">
+                        <input type="hidden" id="updateId">
+                        <div class="mb-3">
+                            <label for="updatePelanggan" class="form-label">Nama Pelanggan</label>
+                            <input type="text" class="form-control" id="updatePelanggan" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateAlamat" class="form-label">Alamat</label>
+                            <input type="text" class="form-control" id="updateAlamat" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateTelp" class="form-label">No. Telepon</label>
+                            <input type="text" class="form-control" id="updateTelp" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-secondary" onclick="hideUpdateForm()">Cancel</button>
+                    </form>
+                </div>
+                <div id="postForm" class="border p-3 mb-3" style="display: none;">
+                    <h5>Tambah Data Pelanggan</h5>
+                    <form onsubmit="submitPelanggan(event)">
+                        <div class="mb-3">
+                            <label for="pelanggan" class="form-label">Nama Pelanggan</label>
+                            <input type="text" class="form-control" id="pelanggan" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telp" class="form-label">No. Telepon</label>
+                            <input type="text" class="form-control" id="telp" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" onclick="hidePostForm()">Cancel</button>
+                    </form>
+                </div>
+                <div id="result" class="border p-3">
+                <!-- Table will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import data siswa (commented out as we're using API now)
+        // import { get, show } from './function.js';
+        
+        // Import getData function from get.js
+        import { getData } from './get.js';
+        import { show } from './show.js';
+        import { showPostForm, hidePostForm, submitPelanggan } from './post.js';
+        import { showDeleteForm, deletePelanggan } from './delete.js';
+        import { showUpdateForm, hideUpdateForm, submitUpdatePelanggan } from './update.js';
+        
+        // Make functions available globally
+        window.getData = getData;
+        window.show = show;
+        window.showPostForm = showPostForm;
+        window.hidePostForm = hidePostForm;
+        window.submitPelanggan = submitPelanggan;
+        window.showDeleteForm = showDeleteForm;
+        window.deletePelanggan = deletePelanggan;
+        window.showUpdateForm = showUpdateForm;
+        window.hideUpdateForm = hideUpdateForm;
+        window.submitUpdatePelanggan = submitUpdatePelanggan;
+        window.showDeleteForm = showDeleteForm;
+        window.deletePelanggan = deletePelanggan;
+    </script>
+</body>
+</html>

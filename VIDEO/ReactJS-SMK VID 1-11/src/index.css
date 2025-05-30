@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  color: #2c3e50;
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.app::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') 0 0/50px 50px repeat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.home, .sejarah, .tentang, .kontak {
+  padding: 3.5rem 2.5rem;
+  max-width: 1200px;
+  margin: 2.5rem auto;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.home::before, .sejarah::before, .tentang::before, .kontak::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.home:hover::before, .sejarah:hover::before, .tentang:hover::before, .kontak:hover::before {
+  left: 100%;
+}
+
+.home:hover, .sejarah:hover, .tentang:hover, .kontak:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 800;
+  position: relative;
+  padding-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 150px;
+  height: 5px;
+  background: linear-gradient(90deg, #00c6fb, #005bea);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 198, 251, 0.3);
+}
+
+p {
+  color: #34495e;
+  line-height: 1.9;
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.3px;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Sejarah Page Styles */
+.sejarah-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.sejarah-text {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.sejarah-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideInRight 0.6s ease-out;
+}
+
+.sejarah-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.sejarah-image img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .sejarah-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .sejarah-text {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+  }
+  
+  .sejarah-image img {
+    max-width: 100%;
+  }
+}
