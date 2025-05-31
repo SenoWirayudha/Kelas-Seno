@@ -81,7 +81,8 @@ $app->middleware([
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
-    'user' => App\Http\Middleware\UserMiddleware::class
+    'user' => App\Http\Middleware\UserMiddleware::class,
+    'pelanggan.auth' => App\Http\Middleware\PelangganAuthMiddleware::class,
 ]);
 
 /*

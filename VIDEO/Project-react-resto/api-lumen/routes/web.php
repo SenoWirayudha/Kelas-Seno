@@ -23,9 +23,13 @@ $router->post('api/login', ['uses' => 'LoginController@login']);
 
 $router->get('api/kategori', ['uses' => 'KategoriController@index']);
 
+$router->group(['prefix' => 'api'], function() use ($router) {    
+    // Atau tetap gunakan format yang sudah ada
+    $router->post('pelanggan/register', ['uses' => 'PelangganAuthController@register']);
+    $router->post('pelanggan/login', ['uses' => 'PelangganAuthController@login']);
+});
 
 $router->group(['prefix' => 'api' , 'middleware' => 'auth'], function() use ($router) {
-
 
 $router->get('kategori/{id}', ['uses' => 'KategoriController@show']);
 
@@ -60,6 +64,8 @@ $router->get('order', ['uses' => 'OrderController@index']);
 $router->put('order/{id}', ['uses' => 'OrderController@update']);
 
 $router->get('order/{a}/{b}',  ['uses' => 'OrderController@show']);
+
+$router->post('order', ['uses' => 'OrderController@store']);
 
 $router->get('detail/{a}/{b}',  ['uses' => 'DetailController@show']);
 

@@ -41,11 +41,42 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
 
+     public function store(Request $request)
+    {
+        // Ambil langsung dari request tanpa sub-key 'order'
+        $idpelanggan = $request->input('idpelanggan');
+        $tglorder = $request->input('tglorder');
+        $total = $request->input('total');
+        $bayar = $request->input('bayar');
+        $kembali = $request->input('kembali');
+        $status = $request->input('status');
+
+        $details = $request->input('details');
+
+        // Simpan ke tabel orders dan ambil ID-nya
+        $idorder = DB::table('orders')->insertGetId([
+            'idpelanggan' => $idpelanggan, // Gunakan variabel langsung
+            'tglorder' => $tglorder,
+            'total' => $total,
+            'bayar' => $bayar,
+            'kembali' => $kembali,
+            'status' => $status
+        ]);
+
+        // Simpan semua item ke tabel details
+        foreach ($details as $item) {
+            DB::table('details')->insert([
+                'idorder' => $idorder,
+                'idmenu' => $item['idmenu'],
+                'jumlah' => $item['jumlah'],
+                'hargajual' => $item['hargajual']
+            ]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Order berhasil disimpan']);
+    }
+        
     /**
      * Display the specified resource.
      *
